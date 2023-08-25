@@ -22,9 +22,6 @@ url2 = 'https://query1.finance.yahoo.com/v7/finance/quote?formatted=true&crumb='
 
 response2 = requests.get(url2, headers=get_headers(), timeout=30)
 
-# json string                                                                                                                
-s = '{"col1":{"row1":1,"row2":2,"row3":3},"col2":{"row1":"x","row2":"y","row3":"z"}}'
-
 # read json to data frame    
 res = response2.json()
 df = pd.read_json(json.dumps(res['quoteResponse']['result'])) 
