@@ -24,4 +24,11 @@ response2 = requests.get(url2, headers=get_headers(), timeout=30)
 
 # read json to data frame    
 res = response2.json()
-df = pd.read_json(json.dumps(res['quoteResponse']['result'])) 
+df = pd.json_normalize(res['quoteResponse']['result'])
+
+url3 = 'https://query2.finance.yahoo.com/v10/finance/quoteSummary/AAPL?formatted=true&crumb=' + crumb + '&modules=summaryProfile'
+
+response4 = requests.get(url3, headers=get_headers(), timeout=30)
+res2 = response4.json()
+
+df2 = pd.json_normalize(res2['quoteSummary']['result'][0]['summaryProfile'])
